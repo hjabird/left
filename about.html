@@ -7,5 +7,85 @@ title: "About"
 <section class="content">
   <h1>{{ site.name }}</h1>
 
-  <p>This would be an excellent time to update this page and talk about yourself a bit.</p>
+  <p>I'm Hugh Bird, a post-graduate research student at the University of Glasgow working with Dr. Ramesh on low order aerodynamics.</p>
+  
+  <img src=/images/about/remesh_m4p_heaving_aerofoil.png height="50"
+	alt="An aerofoil undergoing large amplitude sinusoidal heave in an invicid domain modelled using
+	semi-Lagrangain method."/>
+  
+  <p>Modern engineering is increasingly concerned with the non-linear aerodynamics of wings. Problem is, whether you're trying to investigate the flight of a bumble-bee or the aeroelastics of a flexible aeroplane, CFD is slow. Prohibatively slow. And that's before you've found someone with the neccesary expertise to produce a meaningful case. An undergraduate engineer is going to struggle. </p>
+  
+  <p>The idea then is to explicity model the important phenomena within a domain, rather
+  than to implicity model everything as occurs in CFD. This means that wings can be treated
+  as thin and viscosity negleted. The lack of viscosity leads to the pickle of how to shed 
+  vorticity, such that a wing can create lift. For many kinematics, the Kutta-Joukowski theorum
+  suffices. But the most interesting cases, we're interested in the leading edge vortex, its
+  formation and how it affects the lift produced by a wing. LEV shedding is anticipated using 
+  leading shedding criterion.
+  </p>
+  
+  <img src=/images/about/remesh_m4p_heaving_aerofoil.png height="50"
+	alt="An aerofoil undergoing large amplitude sinusoidal heave in an invicid domain modelled using
+	semi-Lagrangain method."/>
+	
+   
+   Publications:
+   <ul>
+      <li>Theoretical and Compuational Studies of a Rectangular Finite Wing Oscillating in Pitch and Heave, H.J.A. Bird & K. Ramesh, 6th European Conference on Computational Mechanics (ECCM 6) 7th European Conference on Computational Fluid Dynamics (ECFD 7), 2018</li>
+      <li>A Geometrically Non-Linear Time-Domain Unsteady Lifting-Line Theory, H.J.A. Bird, S. Otomo, K. Ramesh & I.M. Viola, AIAA Scitech 2019 Forum, San Diego</li>
+   </ul>
+   
+   Teaching (assistant):
+   <ul>
+      <li>C programming</li>
+      <li>Aeroelasticity</li>
+   </ul>
+  
+  <img src=/images/about/remesh_m4p_heaving_aerofoil.png height="50"
+	alt="An aerofoil undergoing large amplitude sinusoidal heave in an invicid domain modelled using
+	semi-Lagrangain method."/>
+    
+   Open-source libraries:
+   <ul>
+      <li><a href="https://github.com/hjabird/cvortex">CVortex</a>: Accelerated vortex particle methods. C/OpenCL/OpenMP. </li>
+      <li><a href="https://github.com/hjabird/CVortex.jl">CVortex.jl</a>: Julia bindings for CVortex. </li>
+      <li><a href="https://github.com/hjabird/LiftingLineTheory.jl">LiftingLineTheory.jl</a> Low order methods for the analysis of aerofoils and wings. Julia. </li>      
+	  <li><a href="https://github.com/hjabird/bsv">BSV</a> Small vectors. Header-only C. </li>
+	  <li>[fork]<a href="https://github.com/hjabird/vcpkg">Vcpkg</a> Cross-platform build tool. Fork includes ports for BSV & HBTK. </li>
+      <li>[depreciated] <a href="https://github.com/hjabird/HBTK">HBTK</a>: Scientific programming generic library inc. quadrature, geometry, meshes, IO, interpolation, plotting, aerofoil geometry generation & integral remaps. C++. </li>
+      <li>[depreciated] <a href="https://github.com/hjabird/pflows">pflows</a>: Potential flows. C++.</li>
+   </ul>
+   
+   Open-source codes:
+   <ul>
+      <li>[Master's project / abandonware] <a href="https://github.com/hjabird/XFEM_Boundary_Cooling_Solver">HT3 solver</a>: hyperbolic tangent function enriched (XFEM) boundary cooling code including simplified radiation model. Python. </li>
+   </ul>
+   
+   
+   
+  <img src=/images/about/remesh_m4p_heaving_aerofoil.png height="50"
+	alt="An aerofoil undergoing large amplitude sinusoidal heave in an invicid domain modelled using
+	semi-Lagrangain method."/>
+	
+   Interests:
+   <ul>
+      <li>Potential flow</li>
+      <li>Lifting-line theory</li>
+      <li>Vortex particle methods</li>
+      <li>Leading-edge vortices</li>
+      <li>High-performance & GPGPU computing</li>
+      <li>Programming(C, C++, MATLAB, Julia, Python)</li>
+	  <li>Solar car racing</li>
+	  <li>Model aeroplanes</li>
+   </ul>
+   
+   Contact:
+   h (dot) bird (dot) 1 (at) research.gla.ac.uk
+	
+  
+  <img src=/images/about/remesh_m4p_heaving_aerofoil.png height="50"
+	alt="An aerofoil undergoing large amplitude sinusoidal heave in an invicid domain modelled using
+	semi-Lagrangain method."/>
+	
+   This site is based upon the <a href="https://github.com/holman/left">Left</a> Jekyll blog. Thanks <a href="https://twitter.com/Holman">Zach Holman</a>.
 </section>
