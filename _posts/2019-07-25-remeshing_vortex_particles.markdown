@@ -99,7 +99,7 @@ We can apply this to our unsteady thin aerofoil problem. Remeshing on every step
 
 This scheme gives rather disappointing results:
 
-![Lambda0 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda0_basis.png "Lambda0 case")
+![Lambda0 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda0_basis.PNG "Lambda0 case")
 
 The scheme is discontinuous, which leads to numerical noise. On the plus side, it results in fewer vortices than the original implementation.
 
@@ -108,14 +108,14 @@ High order, non-discontinuous schemes are desirable.
 $$\Lambda_1(U) = \begin{cases} 1-U & \text{ if } U \leq 1\\ 0 & \text{ otherwise} \end{cases}$$
 
 Such as scheme removes the discontinuity and gives far better looking results. However it is also dissipative. Consequently, the solution of this scheme is a little closer to what one might expect from CFD. 
-![Lambda1 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda1_basis.png "Lambda1 case")
+![Lambda1 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda1_basis.PNG "Lambda1 case")
 
 A higher order scheme still is the $$\Lambda_2$$ scheme. This is once again discontinuous.
 
 $$\Lambda_2(U) = \begin{cases} 1-U^2 & \text{ if } 0 \leq U < \frac{1}{2}\\ \frac{1}{2}(1-U)(2-U) & \text{ if } \frac{1}{2} \leq U < \frac{3}{2}\\0 & \text{ otherwise} \end{cases}$$
 
 These discontinuities make the solution look sparkly.
-![Lambda2 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda2_basis.png "Lambda2 case")
+![Lambda2 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda2_basis.PNG "Lambda2 case")
 
 Finally we reach the higher order schemes. Both the $$\Lambda_3$$ and $$M_4'$$ are - according to Winckelmans - most often used. They are as follows:
 
@@ -125,19 +125,19 @@ $$M_4'(U) = \begin{cases} 1 - \frac{5}{2}U^2+\frac{3}{2}U^3 & \text{ if } 0 \leq
 
 The $$\Lambda_3$$ gives:
 
-![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_basis.png "Lambda3 case")
+![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_basis.PNG "Lambda3 case")
 
 And the $$M_4'$$ scheme gives:
 
-![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_basis.png "M4p case")
+![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_basis.PNG "M4p case")
 
 So we have two slightly different solutions. Is either better?
 
 We can use more refined solutions for comparison. Setting $$dt=h=0.015/2=0.0075$$ and the grid spacing we obtain solution redistributed with the $$\Lambda_4$$ and $$M_4'$$ scheme respectively:
 
-![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_fine.png "Lambda3 fine case")
+![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_fine.PNG "Lambda3 fine case")
 
-![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_fine.png "M4p fine case")
+![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_fine.PNG "M4p fine case")
 
 So what am I taking from these refined cases? The most distinctive difference in the unrefined case between the two schemes is the large blue vortex in the middle on the right of the image. For the unrefined $$\Lambda_3$$ scheme it is circular, whilst for the unrefined $$M_4'$$ case it has two trailing legs. For the refined cases, it becomes circular for the $$M_4'$$ case and legged for the $$\Lambda_3$$ case. Not useful. However, for many of the other vortices, the $$\Lambda_3$$ scheme is more consistent between refinement levels. Overall, without further examination of the repercussions of different ODE solvers and solver settings, I suspect that comparing the redistribution functions is a futile exercise.
 
