@@ -124,14 +124,19 @@ $$\Lambda_3(U) = \begin{cases} \frac{1}{2}(1-U^2)(2-U) & \text{ if } 0 \leq U < 
 $$M_4'(U) = \begin{cases} 1 - \frac{5}{2}U^2+\frac{3}{2}U^3 & \text{ if } 0 \leq U \leq 1\\ \frac{1}{2}(1-U)(2-U)^2 & \text{ if } 1 \leq U \leq 2\\0 & \text{ otherwise} \end{cases}$$
 
 The $$\Lambda_3$$ gives:
+
 ![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_basis.png "Lambda3 case")
+
 And the $$M_4'$$ scheme gives:
+
 ![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_basis.png "M4p case")
+
 So we have two slightly different solutions. Is either better?
 
 We can use more refined solutions for comparison. Setting $$dt=h=0.015/2=0.0075$$ and the grid spacing we obtain solution redistributed with the $$\Lambda_4$$ and $$M_4'$$ scheme respectively:
 
 ![Lambda3 regridded case](/images/2019-07-25-remeshing-vortex-particles/lambda3_fine.png "Lambda3 fine case")
+
 ![M4' regridded case](/images/2019-07-25-remeshing-vortex-particles/m4p_fine.png "M4p fine case")
 
 So what am I taking from these refined cases? The most distinctive difference in the unrefined case between the two schemes is the large blue vortex in the middle on the right of the image. For the unrefined $$\Lambda_3$$ scheme it is circular, whilst for the unrefined $$M_4'$$ case it has two trailing legs. For the refined cases, it becomes circular for the $$M_4'$$ case and legged for the $$\Lambda_3$$ case. Not useful. However, for many of the other vortices, the $$\Lambda_3$$ scheme is more consistent between refinement levels. Overall, without further examination of the repercussions of different ODE solvers and solver settings, I suspect that comparing the redistribution functions is a futile exercise.
