@@ -101,7 +101,7 @@ Increasing the order of the transform improves the result of the quadrature. How
 
 Lets try some other integrands, just to convince ourselves that the two used so far ain't special.
 
-$$f(x) = (x+1)^{1/3}$$
+$$f(x) = (x+1)^{-1/3}$$
 
 ![Accuracy impact of polynomial transforms on (x+1)^(1/3)]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/All_x3_err.png "Accuracy impact of polynomial transforms on (x+1)^(1/3)")
 
