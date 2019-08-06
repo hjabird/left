@@ -95,7 +95,7 @@ $$ \frac{dx}{d\eta} = k 2^{1-k} \eta_s (1 - \eta_s \eta)^{k-1} $$
 
 where $$k$$ is the order of the remap, and as with above $$x_s = \eta_s$$ and $$\lvert \eta_s \rvert = 1$$. We can look at the effect on the accuracy of a remapped Gauss-Legendre remap for $$f(x) = \log(x+1)$$ again.
 
-![Accuracy impact of polynomial transforms on log(x+1)]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/All_log_err.png "Accuracy impact of polynomial transforms on log(x+1)")
+![Accuracy impact of polynomial transforms on log(x+1)]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/all_log_err.png "Accuracy impact of polynomial transforms on log(x+1)")
 
 Increasing the order of the transform improves the result of the quadrature. However, there is a limit the order of transform that can practically be used. Remember how the points all bunch around the singularity? With higher and higher order transforms the accuracy of double precision variables eventually becomes a problem. Generally, one does well to avoid higher than fifth order transforms.
 
@@ -103,7 +103,7 @@ Lets try some other integrands, just to convince ourselves that the two used so 
 
 $$f(x) = (x+1)^{-1/3}$$
 
-![Accuracy impact of polynomial transforms on (x+1)^(1/3)]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/All_x3_err.png "Accuracy impact of polynomial transforms on (x+1)^(1/3)")
+![Accuracy impact of polynomial transforms on (x+1)^(1/3)]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/all_x3_err.png "Accuracy impact of polynomial transforms on (x+1)^(1/3)")
 
 The third and sixth order transforms do especially well for the same reason Telles 2 worked well on $$1/\sqrt{x}$$.
 
@@ -112,7 +112,7 @@ Also
 $$f(x) = \frac{1}{\sqrt{1 - \left(\frac{x}{2} - \frac{1}{2}\right)^2}}$$
 
 
-![Accuracy impact of polynomial remaps on a more complex integrand]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/All_sqrt1x2_err.png "Accuracy impact of polynomial remaps on a more complex integrand")
+![Accuracy impact of polynomial remaps on a more complex integrand]({{ site.url }}/images/2019-08-06-quadratures-with-weak-singularities/all_sqrt1x2_err.png "Accuracy impact of polynomial remaps on a more complex integrand")
 
 Here the even order polynomial transforms do best, with Telles 2 doing best of all, bucking the trend of higher order being better.
 
