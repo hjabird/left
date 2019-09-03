@@ -5,6 +5,8 @@ category: posts
 draft: false
 ---
 
+*Edit 03/09/2019: Correction to integral $$I_2$$.*
+
 A foreword: this post is for myself and anyone who is confused at how I obtained the maths used in part of LiftingLineTheory.jl. It also serves as an opportunity for me to check my maths. Consequently, it isn't very exciting. 
 
 ---
@@ -116,26 +118,28 @@ $$ \frac{dE_1(z)}{dz} = - \frac{e^{-z}}{z}$$
 
 Working from this, a simple integral is
 
-$$  \int^b_a dx\;E_1(x) = e^{-x} + x E_1(x) + C $$
+$$  \int dx\;E_1(x) = x E_1(x) - e^{-x} + C $$
+
+$$  \int dx\;E_1(-x) = x E_1(-x) + e^{x} + C $$
 
 where I've used integration by parts.
 Extending this concept a little in the Cauchy sense with a singularity at $$x=0$$, where $$a<0<b$$ :
 
 $$\int^b_a dx \; \text{sgn}(x)E_1(\lvert x \rvert) = 
-\lim_{\varepsilon\rightarrow0^+} \left( \left[-xE_1(-x) - e^x \right]^{-\varepsilon}_a + \left[xE_1(x) +  e^x \right]^b_{\varepsilon} \right) $$
+\lim_{\varepsilon\rightarrow0^+} \left( \left[-xE_1(-x) - e^x \right]^{-\varepsilon}_a + \left[xE_1(x) -  e^{-x} \right]^b_{\varepsilon} \right) $$
 
 $$\int^b_a dx \; \text{sgn}(x)E_1(\lvert x \rvert) = 
 \lim_{\varepsilon\rightarrow0^+} \left(
 \left[ \varepsilon E_1(\varepsilon) - e^{-\varepsilon} +
  a E_1(-a) + e^{a} \right] + 
-\left[ bE_1(b) + e^b  
--\varepsilon E_1(\varepsilon) - e^\varepsilon \right]
+\left[ bE_1(b) - e^{-b}  
+-\varepsilon E_1(\varepsilon) + e^{-\varepsilon} \right]
  \right) $$
 
 Since $$\lim_{\varepsilon\rightarrow0^+}(\varepsilon E_1(\varepsilon)) = 0$$, this evaluates as 
 
 $$
-\int^b_a dx \; \text{sgn}(x) E_1(\lvert x \rvert) = (aE_1(-a) + e^a - 1) + (bE_1(b) + e^{b} - 1)
+\int^b_a dx \; \text{sgn}(x) E_1(\lvert x \rvert) = aE_1(-a) + e^a + bE_1(b) - e^{-b}
 $$
 
 We can substitute some of the complexity of the original kernel back in as $$x = \nu (y - \eta)$$, swapping the integration variable to $$\theta$$ again.
@@ -163,8 +167,8 @@ So,
 $$
 \begin{multline}
 \nu s \int^\pi_0 d\theta \; \text{sgn}( y - s \cos(\theta))E_1(\nu \lvert y - s \cos(\theta) \rvert) \sin(\theta) = \\
-\left(\nu(y - s)E_1(-\nu(y - s)) + e^{\nu(y - s)} - 1\right) + \\
-\left(\nu(y + s)E_1(\nu(y + s)) + e^{\nu(y + s)} - 1\right)
+\nu(y - s)E_1(-\nu(y - s)) + e^{\nu(y - s)} +
+\nu(y + s)E_1(\nu(y + s)) - e^{-\nu(y + s)}
 \end{multline}
 $$
 
@@ -201,7 +205,7 @@ E_1(\nu ( s \cos(\theta) - y )) \sin(\theta) \left(
 \frac{\cos(k \theta_s)}{\nu s \sin(\theta_s)}
 \left(
 \nu(y - s)E_1(-\nu(y - s)) + e^{\nu(y - s)} +
-\nu(y + s)E_1(\nu(y + s)) + e^{\nu(y + s)} - 2\right)\\
+\nu(y + s)E_1(\nu(y + s)) - e^{-\nu(y + s)}\right)\\
 \Bigg]
 \end{multline}
 $$
