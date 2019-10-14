@@ -7,6 +7,10 @@ draft: false
 
 *Edit 03/09/2019: Correction to integral $$I_2$$.*
 
+*Edit 27/09/2019: Integral $$P(y)$$ typo fixed.*
+
+*Edit 14/10/2019: Second method for $$I_2$$ added.*
+
 A foreword: this post is for myself and anyone who is confused at how I obtained the maths used in part of LiftingLineTheory.jl. It also serves as an opportunity for me to check my maths. Consequently, it isn't very exciting. 
 
 ---
@@ -97,7 +101,7 @@ $$
 \begin{multline}
 \int^\infty_1 dt\;e^{-yt}\left[\frac{\sqrt{t^2 - 1} - t}{t} \right]
  = \\ -e^{-yt}\left(\frac{\pi}{2} -1\right) + \int^\infty_1 dt\;
-e^{-yt}\left(\sin^{-1}\left(\frac{1}{\lvert t \rvert }\right)  + \sqrt{t^2 -1} - t\right)
+y e^{-yt}\left(\sin^{-1}\left(\frac{1}{t}\right)  + \sqrt{t^2 -1} - t\right)
 \end{multline}$$
 
 which seems to be easier to evaluate numerically (although, given that I'm working with big floating point numbers, it might be that something funny is happening). I used Gauss-Laguerre quadrature.
@@ -106,6 +110,7 @@ which seems to be easier to evaluate numerically (although, given that I'm worki
 
 $$I_2$$ is a challenge.
 
+*Edit 14/10/2019 - I've added a second different method for this integral below.*
  
 $$ I_2 = \int^\pi_0 d\theta \frac{d\Gamma(\eta)}{d\theta} \frac{1}{2} \text{sgn}(y-\eta)i \nu E_1(\nu \lvert y - \eta \rvert) $$
 
@@ -209,6 +214,48 @@ E_1(\nu ( s \cos(\theta) - y )) \sin(\theta) \left(
 \Bigg]
 \end{multline}
 $$
+
+---
+
+$$I_2$$ can also be tackled by extracting the singular part of $$E_1$$. The following identity is from Abramowitz & Stegun 5.1.11:
+
+$$
+E_1(z) = -\gamma - \ln(z) - \sum_{n=1}^{\infty} \frac{(-1)^nz^n}{nn!}
+$$
+
+Consequentially, we can separate out the singularity from the part with the exponential integral:
+
+$$ 
+\begin{multline}
+I_2 
+= \frac{i \nu}{2} \sum \Gamma_k k \left[\int^\pi_0 d\theta \cos(k \theta)\text{sgn}(y-\eta)E_1(\nu \lvert y - \eta \rvert) \right]\\
+= \frac{i \nu}{2} \sum \Gamma_k k \Bigg[\int^\pi_0 d\theta \cos(k \theta)\text{sgn}(y-\eta)\left(E_1(\nu \lvert y - \eta \rvert) - \ln(\nu \lvert y - \eta \rvert) \right)\\
+- \int^\pi_0 d\theta \cos(k \theta)\text{sgn}(y-\eta)\ln(\nu \lvert y - \eta \rvert)\Bigg]
+\end{multline}
+$$
+
+One can easily obtain the result that $$\int dx \ln(x) = x \ln(x) - x + C$$. Using the same method to swap the variable of integration as above we can obtain
+
+$$
+\begin{multline}
+\int^\pi_0 d\theta \;\ln(\lvert \nu(y - \eta) \rvert) \nu s \sin(\theta) = \\
+\nu(y+s)\ln(\nu(y+s)) - \nu(y+s)\\ - \nu(y-s) \ln(-\nu (y-s)) + \nu (y-s)
+\end{multline}
+$$
+
+which only leaves us to create an especially long expression for the singularity subtraction (where I've skipped the separation of the integrals across the C1 discontinuity).
+
+$$
+\begin{multline}
+I_2 = \frac{i \nu}{2} \sum \Gamma_k k \Bigg[\\
+\int^\pi_0 d\theta \cos(k \theta)\text{sgn}(y-\eta)\left(E_1(\nu \lvert y - \eta \rvert) - \ln(\nu \lvert y - \eta \rvert) \right)\\
+-\int^\pi_0 d\theta \; \nu s \sin(\theta) \ln(\nu \lvert y - \eta \rvert) \left(\text{sgn}(y-\eta) \frac{\cos(k\theta)}{\nu s \sin(\theta)} - \text{sgn}(0) \frac{\cos(k\theta_s)}{\nu s \sin(\theta_s)}\right)\\
+-\frac{\text{sgn}(0)\cos(k\theta_s)}{\nu s \sin(\theta_s)}\Big(\nu(y+s)\ln(\nu(y+s)) - \nu(y+s)\\ - \nu(y-s) \ln(-\nu (y-s)) + \nu (y-s) \Big)
+\Bigg]
+\end{multline}
+$$
+
+Whilst this isn't any better that more direct evaluation of the singularity, having a second way of numerically achieving the same results as earlier is useful for verifying that there isn't an error in the maths or implementation.
 
 ---
 
