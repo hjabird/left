@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How much to regularised vortex particles look like singular particles?
+title: How much do regularised vortex particles look like singular particles?
 category: posts
 draft: false
 ---
