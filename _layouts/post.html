@@ -2,28 +2,28 @@
 layout: layout
 ---
 
-<script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-		extensions:	[
-			"MathMenu.js",
-			"MathZoom.js",
-			"AssistiveMML.js",
-			"ally/accessibility-menu.js"
-		],
-		jax: ["input/TeX", "output/CommonHTML"],
-		TeX: {
-			extensions:	[
-				"AMSmath.js",
-				"AMSsymbols.js",
-				"noErrors.js",
-				"noUndefined.js",
-			]
-		}
-	});
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    renderActions: {
+      findScript: [9, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+        doc.findMath();
+      }, '']
+    }
+  }
+};
 </script>
-
-<script type="text/javascript" async
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=Tex-MML-AM_CHTML">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
 <section class="content">
@@ -37,7 +37,6 @@ layout: layout
 
   {{ content }}
 
-  <!-- TODO: bio here -->
   <section class="meta">
     <h3>Hugh Bird</h3>
     <section class="copy">
